@@ -1,4 +1,4 @@
-# Custom ArcGis Web App Builder Query Widget
+# Custom ArcGis Web AppBuilder Query Widget
 Widget Query personalizado para atender a uma demanda para um aplicativo 
 específico no ArcGis Portal.<br>
 Quando o resultado de uma pesquisa é clicado, a camada relacionada a categoria
