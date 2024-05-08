@@ -48,4 +48,4 @@ do resultado se torna visível.
     ```
     Nesse código, é adicionado uma captura de evento do tipo **click** para o 
     **'query-result-item-table'**. Quando for clicado, a função 
-    **_onResultItemClick** executada.
+    **_onResultItemClick** é executada.
