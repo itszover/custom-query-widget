@@ -535,16 +535,19 @@ define([
       },
 
       _onResultItemClick: function(event) {
-        const feature = event.target.closest('.jimu-table-row').feature;
-        const category = feature.attributes.CATEGORIA;
-        const mainLayerNode = this.layerStructure.getNodeById('IPPULEmpreendeLondrina_2997');
+        const feature = event.target.closest('.jimu-table-row')?.feature;
+        const categoria = feature.attributes.CATEGORIA;
+        const layerNodes = this.layerStructure.getLayerNodes();
 
-        mainLayerNode.getSubNodes().forEach(function (node) {
-          if (node.title.toLowerCase() === category.toLowerCase()) 
-            { node.show(); } 
-          else 
-            { node.hide(); }
-        });
+        for (const layer of layerNodes) {
+          for (const subNode of layer.getSubNodes()) {
+            if (subNode.title.toLowerCase() === categoria.toLowerCase()) {
+              subNode.show();
+            } else {
+              subNode.hide();
+            }
+          }
+        }
       },
 
       _createQueryResultItem: function(options, i) {
