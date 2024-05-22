@@ -8,20 +8,24 @@ do resultado se torna visível.
 
   ```js
   _onResultItemClick: function (event) {
-        const feature = event.target.closest('.jimu-table-row')?.feature;
-        const categoria = feature.attributes.CATEGORIA;
-        const layerNodes = this.layerStructure.getLayerNodes();
+    const feature = event.target.closest('.jimu-table-row')?.feature;
+    if (!feature) return;
+
+    const categoria = feature.attributes?.CATEGORIA;
+    if (!categoria) return;
+
+    const layerNodes = this.layerStructure.getLayerNodes();
   
-        for (const layer of layerNodes) {
-          for (const subNode of layer.getSubNodes()) {
-            if (subNode.title.toLowerCase() === categoria.toLowerCase()) {
-              subNode.show();
-            } else {
-              subNode.hide();
-            }
-          }
+    for (const layer of layerNodes) {
+      for (const subNode of layer.getSubNodes()) {
+        if (subNode.title.toLowerCase().trim() === categoria.toLowerCase().trim()) {
+          subNode.show();
+        } else {
+          subNode.hide();
         }
-      },
+      }
+    }
+  },
   ```
   A função captura o clique e procura pelo **'.jimu-table-row'** mais próximo e
   atribui a categoria para a variável **categoria**. Depois, é realizado uma
@@ -38,14 +42,13 @@ do resultado se torna visível.
     trItem.feature = feature;
     
     // Código adicionado
-    var tableItem = query('.query-result-item-table', trItem)[0];
+    var tableItem = query('td', trItem)[0];
     on(tableItem, 'click', lang.hitch(this, function(event) {
       this._onResultItemClick(event);
     }))
     // Fim do código adicionado
-    
     // Restante da função ...
     ```
-    Nesse código, é adicionado uma captura de evento do tipo **click** para o 
-    **'query-result-item-table'**. Quando for clicado, a função 
+    Nesse código, é adicionado uma captura de evento do tipo **click** para
+    os elementos **'td'** dentro de **trItem**. Quando for clicado, a função 
     **_onResultItemClick** é executada.
